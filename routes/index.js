@@ -21,6 +21,10 @@ router.get('/newuser', function(req, res) {
     res.render('newuser', { title: 'Add New User' });
 });
 
+/* GET to Add User Service */
+router.get('/adduser', function(req, res) {
+    res.render('newuser', { title: 'Add New User' });
+});
 /* POST to Add User Service */
 router.post('/adduser', function(req, res) {
 
