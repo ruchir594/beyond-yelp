@@ -4,39 +4,116 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var methodOverride = require('method-override')
+var session = require('express-session')
 var mongo = require('mongodb');
 var monk = require('monk');
+var mongoose = require('mongoose');
 var db = monk('localhost:27017/store1');
 var engines = require('consolidate');
+var passport = require('passport');
+var config = require('./oauth.js');
+var FacebookStrategy = require('passport-facebook').Strategy;
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var User = require('./routes/user.js');
+var fbAuth = require('./authentication.js');
 var fbl = require('./routes/fbl');
+
+// serialize and deserialize
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
+
+// connect to the database
+// mongo config
+mongoose.connect('localhost:27017/store1');
+
+
+// config
 
 var app = express();
 
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+app.use(logger('dev'));
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(methodOverride());
+app.use(session({ secret: 'my_precious', resave: true, saveUninitialized: true}));
+app.use(passport.initialize());
+app.use(passport.session());
+//app.use(app.router);
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
+// serialize and deserialize
+passport.serializeUser(function(user, done) {
+  console.log('serializeUser: ' + user._id);
+  done(null, user._id);
+});
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user){
+    console.log(user);
+      if(!err) done(null, user);
+      else done(err, null);
+    });
+});
+
+// view engine setup
+//
+//app.set('view engine', 'jade');
 //app.engine('jade', engines.jade);
 //app.engine('handlebars', engines.handlebars);
 //app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(function(req,res,next){
     req.db = db;
     next();
 });
 
+//app.use('/', index);
+//app.use('/users', users);
+//app.use('/fbl', fbl);
+// routes
 app.use('/', index);
-app.use('/users', users);
-app.use('/fbl', fbl);
+//app.use('/ping', ping);
+app.get('/account', ensureAuthenticated, function(req, res){
+  User.findById(req.session.passport.user, function(err, user) {
+    if(err) {
+      console.log(err);  // handle errors
+    } else {
+      res.render('account', { user: user});
+    }
+  });
+});
+//app.use('/', function(req, res){
+//  res.render('login', { user: req.user });
+//});
+
+app.get('/auth/facebook',
+  passport.authenticate('facebook'),
+  function(req, res){});
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/' }),
+  function(req, res) {
+    res.redirect('/account');
+  });
+
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+
+// test authentication
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/');
+}
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
