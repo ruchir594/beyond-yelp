@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    h1= title
+    form#formFindUser(name="finduser", method="post", action="/finduser")
+        input#inputUserName(type="text", placeholder="Enter a username", name="username")
+        button#btnSubmit(type="submit") Find!
+
+    h1.
+        User information
+    each f, i in fuser
+        p #{f.email}, #{f.username}, #{i}

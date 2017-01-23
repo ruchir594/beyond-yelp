@@ -53,5 +53,18 @@ router.post('/adduser', function(req, res) {
         }
     });
 });
-
+/* GET to Find User Service */
+router.get('/finduser', function(req, res) {
+        res.render('finduser', {title: 'Find A User',fuser: ''});
+});
+router.post('/finduser', function(req, res) {
+    var db = req.db;
+    var collection = db.get('usercollection');
+    collection.find({ "username": req.body.username }, {}, function(e,docs){
+        res.render('finduser', {
+            title: 'Find A User',
+            fuser: docs
+        });
+    });
+});
 module.exports = router;
