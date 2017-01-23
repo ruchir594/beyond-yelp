@@ -55,7 +55,7 @@ router.post('/adduser', function(req, res) {
 });
 /* GET to Find User Service */
 router.get('/finduser', function(req, res) {
-        res.render('finduser', {title: 'Find A User',fuser: ''});
+        res.render('finduser', {title: 'Find A User', fuser: ''});
 });
 router.post('/finduser', function(req, res) {
     var db = req.db;
