@@ -6,6 +6,7 @@ var GoogleStrategy = require('passport-google-oauth2').Strategy;
 //var InstagramStrategy = require('passport-instagram').Strategy;
 var User = require('./routes/user.js');
 var config = require('./oauth.js');
+const util = require('util')
 
 module.exports = passport.use(new FacebookStrategy({
   clientID: config.facebook.clientID,
@@ -14,6 +15,7 @@ module.exports = passport.use(new FacebookStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
     User.findOne({ oauthID: profile.id }, function(err, user) {
+        //console.log(util.inspect(profile, false, null))
       if(err) {
         console.log(err);  // handle errors!
       }
@@ -23,6 +25,7 @@ module.exports = passport.use(new FacebookStrategy({
         user = new User({
           oauthID: profile.id,
           name: profile.displayName,
+          email: profile.email,
           created: Date.now()
         });
         user.save(function(err) {
@@ -45,6 +48,7 @@ passport.use(new TwitterStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
     User.findOne({ oauthID: profile.id }, function(err, user) {
+        //console.log(util.inspect(profile, false, null))
       if(err) {
         console.log(err);  // handle errors!
       }
@@ -54,6 +58,7 @@ passport.use(new TwitterStrategy({
         user = new User({
           oauthID: profile.id,
           name: profile.displayName,
+          email: profile.email,
           created: Date.now()
         });
         user.save(function(err) {
@@ -85,6 +90,7 @@ passport.use(new GithubStrategy({
         user = new User({
           oauthID: profile.id,
           name: profile.displayName,
+          email: profile.email,
           created: Date.now()
         });
         user.save(function(err) {
@@ -110,12 +116,14 @@ passport.use(new GoogleStrategy({
       if(err) {
         console.log(err);  // handle errors!
       }
+      //console.log(util.inspect(profile, false, null))
       if (!err && user !== null) {
         done(null, user);
       } else {
         user = new User({
           oauthID: profile.id,
           name: profile.displayName,
+          email: profile.email,
           created: Date.now()
         });
         user.save(function(err) {
