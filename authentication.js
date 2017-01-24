@@ -26,6 +26,7 @@ module.exports = passport.use(new FacebookStrategy({
           oauthID: profile.id,
           name: profile.displayName,
           email: profile.email,
+          type: "Facebook",
           created: Date.now()
         });
         user.save(function(err) {
@@ -59,6 +60,7 @@ passport.use(new TwitterStrategy({
           oauthID: profile.id,
           name: profile.displayName,
           email: profile.email,
+          type: "Twitter",
           created: Date.now()
         });
         user.save(function(err) {
@@ -124,6 +126,7 @@ passport.use(new GoogleStrategy({
           oauthID: profile.id,
           name: profile.displayName,
           email: profile.email,
+          type: "Google",
           created: Date.now()
         });
         user.save(function(err) {

@@ -5,6 +5,7 @@ var User = mongoose.model('User', {
   oauthID: Number,
   name: String,
   email: String,
+  type: String,
   created: Date
 });
 

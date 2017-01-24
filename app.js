@@ -23,6 +23,7 @@ var index = require('./routes/index');
 var User = require('./routes/user.js');
 var fbAuth = require('./authentication.js');
 var fbl = require('./routes/fbl');
+var findrestaurants = require('./routes/findrestaurants');
 
 // serialize and deserialize
 passport.serializeUser(function(user, done) {
@@ -85,13 +86,14 @@ app.use(function(req,res,next){
 //app.use('/fbl', fbl);
 // routes
 app.use('/', index);
+app.use('/findrestaurants', findrestaurants)
 //app.use('/ping', ping);
 app.get('/account', ensureAuthenticated, function(req, res){
   User.findById(req.session.passport.user, function(err, user) {
     if(err) {
       console.log(err);  // handle errors
     } else {
-      res.render('account', { user: user});
+      res.render('account', { user: user, query: {"food":"none", "place":"none"}, result: "" });
     }
   });
 });
