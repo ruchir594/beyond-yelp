@@ -14,6 +14,10 @@ var engines = require('consolidate');
 var passport = require('passport');
 var config = require('./oauth.js');
 var FacebookStrategy = require('passport-facebook').Strategy;
+var TwitterStrategy = require('passport-twitter').Strategy;
+var GithubStrategy = require('passport-github2').Strategy;
+var GoogleStrategy = require('passport-google-oauth2').Strategy;
+//var InstagramStrategy = require('passport-instagram').Strategy;
 
 var index = require('./routes/index');
 var User = require('./routes/user.js');
@@ -100,6 +104,27 @@ app.get('/auth/facebook',
   function(req, res){});
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/' }),
+  function(req, res) {
+    res.redirect('/account');
+  });
+
+app.get('/auth/google',
+passport.authenticate('google', { scope: [
+  'https://www.googleapis.com/auth/plus.login',
+  'https://www.googleapis.com/auth/plus.profile.emails.read'
+] }
+));
+app.get('/auth/google/callback',
+passport.authenticate('google', { failureRedirect: '/' }),
+function(req, res) {
+  res.redirect('/account');
+});
+
+app.get('/auth/twitter',
+  passport.authenticate('twitter'),
+  function(req, res){});
+app.get('/auth/twitter/callback',
+  passport.authenticate('twitter', { failureRedirect: '/' }),
   function(req, res) {
     res.redirect('/account');
   });
