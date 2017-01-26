@@ -11,21 +11,22 @@ const util = require('util')
 module.exports = passport.use(new FacebookStrategy({
   clientID: config.facebook.clientID,
   clientSecret: config.facebook.clientSecret,
-  callbackURL: config.facebook.callbackURL
+  callbackURL: config.facebook.callbackURL,
+  profileFields: ['id', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified', 'displayName', 'emails']
   },
   function(accessToken, refreshToken, profile, done) {
     User.findOne({ oauthID: profile.id }, function(err, user) {
-        //console.log(util.inspect(profile, false, null))
       if(err) {
         console.log(err);  // handle errors!
       }
       if (!err && user !== null) {
         done(null, user);
       } else {
+          //console.log(util.inspect(profile, false, null))
         user = new User({
           oauthID: profile.id,
           name: profile.displayName,
-          email: profile.email,
+          email: profile.emails[0].value,
           type: "Facebook",
           created: Date.now()
         });

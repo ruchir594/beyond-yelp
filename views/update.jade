@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    title Your Profile
+    #header.container
+        #logo
+            a(href='/') Home
+        #menu
+            ul
+                li.active
+                    a(href='#') My Profile
+                li
+                    a(href='/network') My Network
+    #page
+        .container
+            .title
+                h2 Welcome, #{user.name}.
+                p
+                    |   My Profile
+                    strong Yo Yo
+                    |   Just checking bro?

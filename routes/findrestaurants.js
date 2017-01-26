@@ -55,6 +55,7 @@ router.post('/', function(req, res) {
       res.render('account', { user: req.user, query: req.body, result: JSON.stringify(data)});
     })
     .catch(function (err) {
+        console.log(util.inspect(err, false, null))
       res.send("Hmmm, something seems to be not working Yelp!...");
     });
 });

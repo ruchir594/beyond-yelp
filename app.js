@@ -24,6 +24,7 @@ var User = require('./routes/user.js');
 var fbAuth = require('./authentication.js');
 var fbl = require('./routes/fbl');
 var findrestaurants = require('./routes/findrestaurants');
+var me = require('./routes/me');
 
 // serialize and deserialize
 passport.serializeUser(function(user, done) {
@@ -86,7 +87,8 @@ app.use(function(req,res,next){
 //app.use('/fbl', fbl);
 // routes
 app.use('/', index);
-app.use('/findrestaurants', findrestaurants)
+app.use('/findrestaurants', findrestaurants);
+app.use('/me', me);
 //app.use('/ping', ping);
 app.get('/account', ensureAuthenticated, function(req, res){
   User.findById(req.session.passport.user, function(err, user) {
@@ -102,7 +104,7 @@ app.get('/account', ensureAuthenticated, function(req, res){
 //});
 
 app.get('/auth/facebook',
-  passport.authenticate('facebook'),
+  passport.authenticate('facebook', {scope:['email', 'public_profile', 'user_friends' ]}),
   function(req, res){});
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/' }),
