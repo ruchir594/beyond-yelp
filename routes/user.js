@@ -6,6 +6,7 @@ var User = mongoose.model('User', {
   name: String,
   email: String,
   type: String,
+  waytrn1: Array,
   created: Date
 });
 
