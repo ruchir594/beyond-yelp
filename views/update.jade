@@ -12,21 +12,29 @@ block content
                     a(href='#') My Profile
                 li
                     a(href='/network') My Network
+                li
+                    a(href='/logout') Logout
+                    //img(src="#{user.profilepic}")
     #page
         .container
             .title
-                h2 Welcome, #{user.name}.
+                h2
+                    | Welcome,
+                    a(href='#{user.profilelink}') #{user.name}.
+                    img(src='#{user.profilepic}')
                 p
                     |   My Profile
                     strong Yo Yo
                     |   Just checking bro?
-                h2=message
+            .update-notification
+                h5=message
     form.pure-form(name="updateForm", method="post", action="/me/update")
         fieldset.pure-group
             legend Personal Details
             input.pure-input-1-3(type="text", name="username", placeholder="#{user.name}", readonly="readonly")
             input.pure-input-1-3(type="email", name="email", placeholder="#{user.email}", readonly="readonly")
-            input.pure-input-1-3(type="text", name="sex", placeholder="sex", readonly="readonly")
+            input.pure-input-1-3(type="text", name="gender", placeholder="#{user.gender}", readonly="readonly")
+            input.pure-input-1-4(type="number", name="age", placeholder="#{user.age}")
         fieldset
             legend What is going on in your head? Don't worry, We will never, ever share it with anyone! Pinky promise :)
             input.pure-input-1-2(type="text", name="waytrn1", placeholder="What is going on in your head?")
@@ -46,10 +54,13 @@ block content
                 input#highest-education(type="radio", name="hedu", value="Doctorate")
                 |   PhD
         fieldset
-            legend Field of Study
+            legend Field of Study and Occupation
             label.pure-checkbox(for="field-of-study")
                 input#field-of-study(type="checkbox", name="fostudy", value="Aerospace")
                 | Aerospace
+                br
+                input#field-of-study(type="checkbox", name="fostudy", value="Architecture")
+                | Architecture
                 br
                 input#field-of-study(type="checkbox", name="fostudy", value="Computer Science")
                 | Computer Science
@@ -57,7 +68,29 @@ block content
                 input#field-of-study(type="checkbox", name="fostudy", value="Economics")
                 | Economics
                 br
+                input#field-of-study(type="checkbox", name="fostudy", value="Engineering")
+                | Engineering
+                br
                 input#field-of-study(type="checkbox", name="fostudy", value="Law")
                 | Law
+                br
+                input#field-of-study(type="checkbox", name="fostudy", value="Liberal Studies")
+                | Liberal Studies
+                br
+                input#field-of-study(type="checkbox", name="fostudy", value="Doctor")
+                | Medicine
+                br
+                input#field-of-study(type="checkbox", name="fostudy", value="Nursing")
+                | Nursing
+                br
+                input#field-of-study(type="checkbox", name="fostudy", value="Public Services")
+                | Public Services (Police officer, Military)
+                br
+                input#field-of-study(type="checkbox", name="fostudy", value="Sciences")
+                | Sciences (Physics, Chemistry)
+                br
+                input#field-of-study(type="checkbox", name="fostudy", value="Other")
+                | Other
+                br
 
         button.pure-button.pure-button-primary(type="submit") Update

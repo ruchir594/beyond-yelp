@@ -12,21 +12,25 @@ module.exports = passport.use(new FacebookStrategy({
   clientID: config.facebook.clientID,
   clientSecret: config.facebook.clientSecret,
   callbackURL: config.facebook.callbackURL,
-  profileFields: ['id', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified', 'displayName', 'emails']
+  profileFields: ['id', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified', 'displayName', 'emails', 'picture.type(large)']
   },
   function(accessToken, refreshToken, profile, done) {
     User.findOne({ oauthID: profile.id }, function(err, user) {
+        //console.log(util.inspect(profile, false, null))
+        console.log(profile);
       if(err) {
         console.log(err);  // handle errors!
       }
       if (!err && user !== null) {
         done(null, user);
       } else {
-          //console.log(util.inspect(profile, false, null))
         user = new User({
           oauthID: profile.id,
           name: profile.displayName,
           email: profile.emails[0].value,
+          profilepic: profile.photos[0].value,
+          profilelink: profile.profileUrl,
+          gender: profile.gender,
           type: "Facebook",
           created: Date.now()
         });
@@ -119,7 +123,7 @@ passport.use(new GoogleStrategy({
       if(err) {
         console.log(err);  // handle errors!
       }
-      //console.log(util.inspect(profile, false, null))
+      console.log(util.inspect(profile, false, null))
       if (!err && user !== null) {
         done(null, user);
       } else {

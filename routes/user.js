@@ -7,6 +7,10 @@ var User = mongoose.model('User', {
   email: String,
   type: String,
   waytrn1: Array,
+  age: Number,
+  profilepic: String,
+  profilelink: String,
+  gender: String,
   created: Date
 });
 

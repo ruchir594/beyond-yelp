@@ -131,6 +131,11 @@
 		font-size: 2em;
 		color: #383326;
 	}
+	.update-notification
+	{
+		color: #19198c;
+		font-style: italic;
+	}
 
 /*********************************************************************************/
 /* Social Icon Styles                                                            */

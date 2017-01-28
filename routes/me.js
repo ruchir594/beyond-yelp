@@ -20,6 +20,7 @@ router.post('/update', function(req, res){
     //console.log(req.user);
     //console.log(req.body);
     var obj_update = {};
+    if (req.body.age) obj_update.age = req.body.age;
     if (req.body.hedu) obj_update.education = req.body.hedu;
     if (req.body.fostudy) obj_update.major = req.body.fostudy;
     obj_update.lastUpdated = Date.now();
@@ -34,7 +35,9 @@ router.post('/update', function(req, res){
         }
         else {
             console.log(result);
-            res.render('update', {user:req.user, fuser:'', message:'Succesfully updated your Profile! :)'});
+            collection.find({oauthID: req.user.oauthID}, {}, function(e, docs){
+                res.render('update', {user:docs[0], fuser:'', message:'Succesfully updated your Profile! :)'});
+            });
         }
     });
     //console.log(update_user);
