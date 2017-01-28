@@ -21,6 +21,7 @@ router.post('/update', function(req, res){
     //console.log(req.body);
     var obj_update = {};
     if (req.body.age) obj_update.age = req.body.age;
+    if (req.body.location) obj_update.location = req.body.location;
     if (req.body.hedu) obj_update.education = req.body.hedu;
     if (req.body.fostudy) obj_update.major = req.body.fostudy;
     obj_update.lastUpdated = Date.now();

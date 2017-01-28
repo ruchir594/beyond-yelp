@@ -31,6 +31,8 @@ module.exports = passport.use(new FacebookStrategy({
           profilepic: profile.photos[0].value,
           profilelink: profile.profileUrl,
           gender: profile.gender,
+          location: "Locality, City, Country.",
+          age: "Age",
           type: "Facebook",
           created: Date.now()
         });
