@@ -1,15 +1,21 @@
 var express = require('express');
 var router = express.Router();
 const util = require('util');
-var Yelp = require('yelp');
+//var Yelp = require('yelp');
+const yelp = require('yelp-fusion');
 var config = require('../oauth.js');
 
-var yelp = new Yelp({
+/*var yelp = new Yelp({
   consumer_key: config.yelp.consumer_key,
   consumer_secret: config.yelp.consumer_secret,
   token: config.yelp.token,
   token_secret: config.yelp.token_secret,
-});
+});*/
+
+const clientId = config.yelpfusion.AppID;
+const clientSecret = config.yelpfusion.AppSecret;
+
+
 
 /* GET */
 router.get('/', function(req, res) {
@@ -28,6 +34,12 @@ router.post('/', function(req, res) {
     var food = req.body.food;
     var place = req.body.place;
 
+    const searchRequest = {
+      term:req.body.food,
+      location: req.body.place,
+      limit: 50
+    };
+
     // Set our collection
     var collection = db.get('allfoodqueries');
 
@@ -44,19 +56,26 @@ router.post('/', function(req, res) {
             //res.send("Hmmm, something seems to be not working...");
         }
         else {
-            // And forward to success page
-            // See http://www.yelp.com/developers/documentation/v2/search_api
-
-            //res.render('account', { user: req.user, query: req.body, result: data1});
         }
     });
+    /*
     yelp.search({ term: req.body.food, location: req.body.place })
     .then(function (data) {
-      res.render('account', { user: req.user, query: req.body, result: JSON.stringify(data)});
+      res.render('home', { user: req.user, query: req.body, result: JSON.stringify(data)});
     })
     .catch(function (err) {
         console.log(util.inspect(err, false, null))
       res.send("Hmmm, something seems to be not working Yelp!...");
+  });*/
+      yelp.accessToken(clientId, clientSecret).then(response => {
+      const client = yelp.client(response.jsonBody.access_token);
+
+      client.search(searchRequest).then(response => {
+        const allResult = response.jsonBody.businesses;
+        res.render('home', { user: req.user, query: req.body, result: JSON.stringify(allResult)});
+      });
+    }).catch(e => {
+      console.log(e);
     });
 });
 module.exports = router;
