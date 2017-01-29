@@ -90,12 +90,12 @@ app.use('/', index);
 app.use('/findrestaurants', findrestaurants);
 app.use('/me', me);
 //app.use('/ping', ping);
-app.get('/account', ensureAuthenticated, function(req, res){
+app.get('/home', ensureAuthenticated, function(req, res){
   User.findById(req.session.passport.user, function(err, user) {
     if(err) {
       console.log(err);  // handle errors
     } else {
-      res.render('account', { user: user, query: {"food":"none", "place":"none"}, result: "" });
+      res.render('home', { user: user, query: {"food":"none", "place":"none"}, result: "" });
     }
   });
 });
@@ -109,7 +109,7 @@ app.get('/auth/facebook',
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/' }),
   function(req, res) {
-    res.redirect('/account');
+    res.redirect('/home');
   });
 
 app.get('/auth/google',
@@ -121,7 +121,7 @@ passport.authenticate('google', { scope: [
 app.get('/auth/google/callback',
 passport.authenticate('google', { failureRedirect: '/' }),
 function(req, res) {
-  res.redirect('/account');
+  res.redirect('/home');
 });
 
 app.get('/auth/twitter',
@@ -130,7 +130,7 @@ app.get('/auth/twitter',
 app.get('/auth/twitter/callback',
   passport.authenticate('twitter', { failureRedirect: '/' }),
   function(req, res) {
-    res.redirect('/account');
+    res.redirect('/home');
   });
 
 app.get('/logout', function(req, res){
