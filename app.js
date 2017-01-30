@@ -95,7 +95,12 @@ app.get('/home', ensureAuthenticated, function(req, res){
     if(err) {
       console.log(err);  // handle errors
     } else {
-      res.render('home', { user: user, query: {"food":"none", "place":"none"}, result: "" });
+      res.render('home', {
+          user: user,
+          query: {"food":"", "place":""},
+          result: "",
+          fillers: {"flr1": "", "flr2": ""} 
+      });
     }
   });
 });

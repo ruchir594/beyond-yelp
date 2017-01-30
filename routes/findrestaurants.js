@@ -19,7 +19,7 @@ const clientSecret = config.yelpfusion.AppSecret;
 
 /* GET */
 router.get('/', function(req, res) {
-    res.render('error');
+    res.redirect('/home');
 });
 
 /* POST to Find Restaurant*/
@@ -37,7 +37,7 @@ router.post('/', function(req, res) {
     const searchRequest = {
       term:req.body.food,
       location: req.body.place,
-      limit: 50
+      limit: 25
     };
 
     // Set our collection
@@ -72,7 +72,11 @@ router.post('/', function(req, res) {
 
       client.search(searchRequest).then(response => {
         const allResult = response.jsonBody.businesses;
-        res.render('home', { user: req.user, query: req.body, result: JSON.stringify(allResult)});
+        res.render('home', {
+            user: req.user,
+            query: req.body,
+            result: allResult,
+            fillers: {"flr1": "Looking for ", "flr2": " at "}});
       });
     }).catch(e => {
       console.log(e);

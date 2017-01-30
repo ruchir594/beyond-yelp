@@ -32,10 +32,316 @@ block content
         input#inputPlace(type="text", placeholder="Location, city, locality ...", name="place")
         button#btnSubmit(type="submit") Find!
 
-    p You searched for #{query.food} at #{query.place}
+        section#portfolio
+          .container
+            .row
+              .col-lg-12.text-center
+                h2 Hello, #{user.name}.
+                hr.star-primary
+                h4 #{fillers.flr1} #{query.food} #{fillers.flr2} #{query.place}
+            .row
+                each f,i in result
+                    .col-sm-4.portfolio-item
+                        a.portfolio-link(href='#sf'+i, data-toggle='modal', id='of'+i)
+                            .caption
+                                .caption-content
+                                    i.fa.fa-star(aria-hidden='true') #{f.rating}
+                                    p #{f.price}
+                                    i.fa.fa-search-plus.fa-3x
+                            p #{f.name}
+                            img.img-responsive(src='#{f.image_url}', alt='')
 
-    p #{result}
+    #sf0.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+        .modal-content
+          .close-modal(data-dismiss='modal')
+            .lr
+              .rl
+          iframe#inf0(src='', width='95%', height='700')
+          br
+          button.btn.btn-default(type='button', data-dismiss='modal')
+              i.fa.fa-times
+              |  Close
+    #sf1.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-content
+        .close-modal(data-dismiss='modal')
+          .lr
+            .rl
+        iframe#inf1(src='', width='95%', height='700')
+        br
+        button.btn.btn-default(type='button', data-dismiss='modal')
+            i.fa.fa-times
+            |  Close
+
+    #sf2.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-content
+        .close-modal(data-dismiss='modal')
+          .lr
+            .rl
+        iframe#inf2(src='', width='95%', height='700')
+        br
+        button.btn.btn-default(type='button', data-dismiss='modal')
+            i.fa.fa-times
+            |  Close
+    #sf3.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-content
+        .close-modal(data-dismiss='modal')
+          .lr
+            .rl
+        iframe#inf3(src='', width='95%', height='700')
+        br
+        button.btn.btn-default(type='button', data-dismiss='modal')
+            i.fa.fa-times
+            |  Close
+    #sf4.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-content
+        .close-modal(data-dismiss='modal')
+          .lr
+            .rl
+        iframe#inf4(src='', width='95%', height='700')
+        br
+        button.btn.btn-default(type='button', data-dismiss='modal')
+            i.fa.fa-times
+            |  Close
+    #sf5.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-content
+        .close-modal(data-dismiss='modal')
+          .lr
+            .rl
+        iframe#inf5(src='', width='95%', height='700')
+        br
+        button.btn.btn-default(type='button', data-dismiss='modal')
+            i.fa.fa-times
+            |  Close
+    #sf6.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-content
+        .close-modal(data-dismiss='modal')
+          .lr
+            .rl
+        iframe#inf6(src='', width='95%', height='700')
+        br
+        button.btn.btn-default(type='button', data-dismiss='modal')
+            i.fa.fa-times
+            |  Close
+    #sf7.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-content
+        .close-modal(data-dismiss='modal')
+          .lr
+            .rl
+        iframe#inf7(src='', width='95%', height='700')
+        br
+        button.btn.btn-default(type='button', data-dismiss='modal')
+            i.fa.fa-times
+            |  Close
+    #sf8.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-content
+        .close-modal(data-dismiss='modal')
+          .lr
+            .rl
+        iframe#inf8(src='', width='95%', height='700')
+        br
+        button.btn.btn-default(type='button', data-dismiss='modal')
+            i.fa.fa-times
+            |  Close
+    #sf9.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-content
+        .close-modal(data-dismiss='modal')
+          .lr
+            .rl
+        iframe#inf9(src='', width='95%', height='700')
+        br
+        button.btn.btn-default(type='button', data-dismiss='modal')
+            i.fa.fa-times
+            |  Close
+    #sf10.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-content
+        .close-modal(data-dismiss='modal')
+          .lr
+            .rl
+        iframe#inf10(src='', width='95%', height='700')
+        br
+        button.btn.btn-default(type='button', data-dismiss='modal')
+            i.fa.fa-times
+            |  Close
+    #sf11.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-content
+        .close-modal(data-dismiss='modal')
+          .lr
+            .rl
+        iframe#inf11(src='', width='95%', height='700')
+        br
+        button.btn.btn-default(type='button', data-dismiss='modal')
+            i.fa.fa-times
+            |  Close
+    #sf12.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-content
+        .close-modal(data-dismiss='modal')
+          .lr
+            .rl
+        iframe#inf12(src='', width='95%', height='700')
+        br
+        button.btn.btn-default(type='button', data-dismiss='modal')
+            i.fa.fa-times
+            |  Close
+    #sf13.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-content
+        .close-modal(data-dismiss='modal')
+          .lr
+            .rl
+        iframe#inf13(src='', width='95%', height='700')
+        br
+        button.btn.btn-default(type='button', data-dismiss='modal')
+            i.fa.fa-times
+            |  Close
+    #sf14.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-content
+        .close-modal(data-dismiss='modal')
+          .lr
+            .rl
+        iframe#inf14(src='', width='95%', height='700')
+        br
+        button.btn.btn-default(type='button', data-dismiss='modal')
+            i.fa.fa-times
+            |  Close
+    #sf15.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-content
+        .close-modal(data-dismiss='modal')
+          .lr
+            .rl
+        iframe#inf15(src='', width='95%', height='700')
+        br
+        button.btn.btn-default(type='button', data-dismiss='modal')
+            i.fa.fa-times
+            |  Close
+    #sf16.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-content
+        .close-modal(data-dismiss='modal')
+          .lr
+            .rl
+        iframe#inf16(src='', width='95%', height='700')
+        br
+        button.btn.btn-default(type='button', data-dismiss='modal')
+            i.fa.fa-times
+            |  Close
+    #sf17.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-content
+        .close-modal(data-dismiss='modal')
+          .lr
+            .rl
+        iframe#inf17(src='', width='95%', height='700')
+        br
+        button.btn.btn-default(type='button', data-dismiss='modal')
+            i.fa.fa-times
+            |  Close
+    #sf18.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-content
+        .close-modal(data-dismiss='modal')
+          .lr
+            .rl
+        iframe#inf18(src='', width='95%', height='700')
+        br
+        button.btn.btn-default(type='button', data-dismiss='modal')
+            i.fa.fa-times
+            |  Close
+    #sf19.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-content
+        .close-modal(data-dismiss='modal')
+          .lr
+            .rl
+        iframe#inf19(src='', width='95%', height='700')
+        br
+        button.btn.btn-default(type='button', data-dismiss='modal')
+            i.fa.fa-times
+            |  Close
+    #sf20.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-content
+        .close-modal(data-dismiss='modal')
+          .lr
+            .rl
+        iframe#inf20(src='', width='95%', height='700')
+        br
+        button.btn.btn-default(type='button', data-dismiss='modal')
+            i.fa.fa-times
+            |  Close
+    #sf21.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-content
+        .close-modal(data-dismiss='modal')
+          .lr
+            .rl
+        iframe#inf21(src='', width='95%', height='700')
+        br
+        button.btn.btn-default(type='button', data-dismiss='modal')
+            i.fa.fa-times
+            |  Close
+    #sf22.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-content
+        .close-modal(data-dismiss='modal')
+          .lr
+            .rl
+        iframe#inf22(src='', width='95%', height='700')
+        br
+        button.btn.btn-default(type='button', data-dismiss='modal')
+            i.fa.fa-times
+            |  Close
+    #sf23.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-content
+        .close-modal(data-dismiss='modal')
+          .lr
+            .rl
+        iframe#inf23(src='', width='95%', height='700')
+        br
+        button.btn.btn-default(type='button', data-dismiss='modal')
+            i.fa.fa-times
+            |  Close
+    #sf24.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-content
+        .close-modal(data-dismiss='modal')
+          .lr
+            .rl
+        iframe#inf24(src='', width='95%', height='700')
+        br
+        button.btn.btn-default(type='button', data-dismiss='modal')
+            i.fa.fa-times
+            |  Close
+    #sf25.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-content
+        .close-modal(data-dismiss='modal')
+          .lr
+            .rl
+        iframe#inf25(src='', width='95%', height='700')
+        br
+        button.btn.btn-default(type='button', data-dismiss='modal')
+            i.fa.fa-times
+            |  Close
+    #portfolioModal3.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+      .modal-content
+        .close-modal(data-dismiss='modal')
+          .lr
+            .rl
+        iframe#frame(src='', width='95%', height='700')
+        br
+        button.btn.btn-default(type='button', data-dismiss='modal')
+            i.fa.fa-times
+            |  Close
+        .container
+          .row
+            .col-lg-8.col-lg-offset-2
+              .modal-body
+      //div
+      //- console.log(result)
+      //div
 
 
-  script(src='http://code.jquery.com/jquery.js')
-  script(src='js/bootstrap.min.js')
+      //p #{result}
+    script.
+        $("#portfolioModal2").html('<object data="http://jalopnik.com">');
+        $("#pm3").html('<object data="http://jalopnik.com">');
+        $("#frame").attr("src", "http://jalopnik.com/")
+        //$("#inf0").attr("src", "http://jalopnik.com/")
+    each f,i in result
+        script.
+            $('#of#{i}').click(function () {
+                $('#inf#{i}').attr("src", "#{f.url}")
+            })
+    script(src='http://code.jquery.com/jquery.js')
+    script(src='js/bootstrap.min.js')
+    //p #{result[2].name}
