@@ -98,22 +98,20 @@ app.get('/home', ensureAuthenticated, function(req, res){
     } else {
         var db = req.db;
         var allusers = db.get('users');
-        //console.log(allusers);
         allusers.find({}, { rawCursor: true }).then((cursor) => {
           // raw mongo cursor
-          cursor.each(function(err, doc) {
-              assert.equal(err, null);
-              if (doc != null) {
-                 console.dir(doc);
-              }
-           });
-        })
-      res.render('home', {
-          user: user,
-          query: {"food":"", "place":""},
-          result: "",
-          fillers: {"flr1": "", "flr2": ""}
-      });
+          cursor.toArray()
+            .then(function(relevantusers){
+                //console.log(relevantusers);
+                res.render('home', {
+                    user: user,
+                    relevantusers: relevantusers,
+                    query: {"food":"", "place":""},
+                    result: "",
+                    fillers: {"flr1": "", "flr2": ""}
+                });
+            });
+        });
     }
   });
 });

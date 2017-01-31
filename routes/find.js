@@ -42,10 +42,7 @@ router.post('/', function(req, res) {
 
     // Set our collection
     var collection = db.get('allfoodqueries');
-    var allusers = db.get('users').find( );
-
-    console.log(allusers);
-
+    var allusers = db.get('users');
     // Submit to the DB
     collection.insert({
         "username" : userName,
@@ -66,12 +63,20 @@ router.post('/', function(req, res) {
 
       client.search(searchRequest).then(response => {
         const allResult = response.jsonBody.businesses;
-        res.render('home', {
-            user: req.user,
-            query: req.body,
-            result: allResult,
-            fillers: {"flr1": " Looking for ", "flr2": " at "}});
-      });
+        allusers.find({}, { rawCursor: true }).then((cursor) => {
+          // raw mongo cursor
+          cursor.toArray()
+            .then(function(relevantusers){
+                //console.log(relevantusers);
+                res.render('home', {
+                    user: req.user,
+                    relevantusers: relevantusers,
+                    query: req.body,
+                    result: allResult,
+                    fillers: {"flr1": " Looking for ", "flr2": " at "}});
+                });
+            });
+        });
     }).catch(e => {
       console.log(e);
     });
