@@ -23,7 +23,7 @@ var index = require('./routes/index');
 var User = require('./routes/user.js');
 var fbAuth = require('./authentication.js');
 var fbl = require('./routes/fbl');
-var findrestaurants = require('./routes/findrestaurants');
+var find = require('./routes/find');
 var me = require('./routes/me');
 
 // serialize and deserialize
@@ -87,7 +87,7 @@ app.use(function(req,res,next){
 //app.use('/fbl', fbl);
 // routes
 app.use('/', index);
-app.use('/findrestaurants', findrestaurants);
+app.use('/find', find);
 app.use('/me', me);
 //app.use('/ping', ping);
 app.get('/home', ensureAuthenticated, function(req, res){
@@ -99,7 +99,7 @@ app.get('/home', ensureAuthenticated, function(req, res){
           user: user,
           query: {"food":"", "place":""},
           result: "",
-          fillers: {"flr1": "", "flr2": ""} 
+          fillers: {"flr1": "", "flr2": ""}
       });
     }
   });
