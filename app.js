@@ -8,6 +8,7 @@ var methodOverride = require('method-override')
 var session = require('express-session')
 var mongo = require('mongodb');
 var monk = require('monk');
+var assert = require('assert');
 var mongoose = require('mongoose');
 var db = monk('localhost:27017/store1');
 var engines = require('consolidate');
@@ -95,6 +96,18 @@ app.get('/home', ensureAuthenticated, function(req, res){
     if(err) {
       console.log(err);  // handle errors
     } else {
+        var db = req.db;
+        var allusers = db.get('users');
+        //console.log(allusers);
+        allusers.find({}, { rawCursor: true }).then((cursor) => {
+          // raw mongo cursor
+          cursor.each(function(err, doc) {
+              assert.equal(err, null);
+              if (doc != null) {
+                 console.dir(doc);
+              }
+           });
+        })
       res.render('home', {
           user: user,
           query: {"food":"", "place":""},

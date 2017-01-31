@@ -42,7 +42,7 @@ router.post('/', function(req, res) {
 
     // Set our collection
     var collection = db.get('allfoodqueries');
-    var allusers = db.get('users').find();
+    var allusers = db.get('users').find( );
 
     console.log(allusers);
 
