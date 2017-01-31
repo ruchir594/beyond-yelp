@@ -27,18 +27,18 @@ block content
     br
     br
     #leftframe(style="float:left; width: 80%")
-        form#formFindRestaurants(name="findRestaurants", method="post", action="/findrestaurants")
-            input#inputFood(type="text", placeholder="Thai, Burger, Ice Cream ... ", name="food")
-            input#inputPlace(type="text", placeholder="Location, city, locality ...", name="place")
-            button#btnSubmit(type="submit") Find!
-
+        p
+            | Hello,
+            strong  #{user.name}. 
+            | #{fillers.flr1} #{query.food} #{fillers.flr2} #{query.place}
+        form.pure-form(name="findRestaurants", method="post", action="/findrestaurants")
+            input.pure-input-1-3(type="text", name="food", placeholder="Thai, Burger, Ice Cream ... ")
+            input.pure-input-1-3(type="text", name="place", placeholder="Location, city, locality ...")
+            button.pure-button.pure-button-primary(type="submit") Find!
             section#portfolio
               .container
                 .row
                   .col-lg-12.text-center
-                    h2 Hello, #{user.name}.
-                    hr.star-primary
-                    h4 #{fillers.flr1} #{query.food} #{fillers.flr2} #{query.place}
                 .row
                     each f,i in result
                         .col-sm-4.portfolio-item

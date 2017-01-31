@@ -67,7 +67,7 @@ router.post('/', function(req, res) {
             user: req.user,
             query: req.body,
             result: allResult,
-            fillers: {"flr1": "Looking for ", "flr2": " at "}});
+            fillers: {"flr1": " Looking for ", "flr2": " at "}});
       });
     }).catch(e => {
       console.log(e);
