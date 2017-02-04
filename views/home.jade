@@ -10,7 +10,7 @@ block content
                     span.icon-bar
                     span.icon-bar
                     span.icon-bar
-                a.navbar-brand.page-scroll(itemprop='name', href='/') Food Networking
+                a.navbar-brand.page-scroll(itemprop='name', href='/') Food Networking &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Welcome, #{user.name}.
             #bs-example-navbar-collapse-1.collapse.navbar-collapse
                 ul.nav.navbar-nav.navbar-right
                     li
@@ -28,13 +28,13 @@ block content
     br
     #leftframe(style="float:left; width: 80%")
         p
-            | Hello,
-            strong  #{user.name}.
             | #{fillers.flr1} #{query.food} #{fillers.flr2} #{query.place}
         form.pure-form(name="findRestaurants", method="post", action="/find")
-            input.pure-input-1-3(type="text", name="food", placeholder="Thai, Burger, Ice Cream ... ")
-            input.pure-input-1-3(type="text", name="place", placeholder="Location, city, locality ...")
-            button.pure-button.pure-button-primary(type="submit") Find!
+            label(for="food") Get
+            input.pure-input-1-3(type="text", name="food", placeholder="Thai Food; Burger; Ice Cream ... ")
+            label(for="place") at
+            input.pure-input-1-3(type="text", name="place", placeholder="Hanover, NH; London; Manhatten ...")
+            button.pure-button.pure-button-primary(type="submit").fa.fa-search
         section#portfolio
           .container
             .row
@@ -49,7 +49,7 @@ block content
                                     i.fa.fa-star(aria-hidden='true') #{f.rating}
                                     p #{f.price}
                                     i.fa.fa-search-plus.fa-3x
-                            p #{f.name}
+                            p(style="color:#444444; background-color:rgba(calc(125*2), 0, 10, calc(#{f.rating}*#{f.rating}/25)); ") #{f.name}
                             img.img-responsive(src='#{f.image_url}', alt='', style='max-height: 400px;')
 
         #sf0.portfolio-modal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
