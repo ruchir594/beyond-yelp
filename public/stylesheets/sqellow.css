@@ -6,7 +6,7 @@
 	body
 	{
 		margin: 0px;
-		padding: 50px;
+		padding: 0px;
 		background: #FFFFFF;
 		line-height: 1.75em;
 		font-family: 'Source Sans Pro', sans-serif;
@@ -61,7 +61,10 @@
 	{
 		overflow: hidden;
 		margin: 0em auto;
-		width: 1360px;
+		padding-right: 15px;
+	    padding-left: 15px;
+	    margin-right: auto;
+	    margin-left: auto;
 	}
 
 /*********************************************************************************/
