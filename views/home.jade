@@ -26,6 +26,14 @@ block content
     br
     br
     br
+
+    #action.bg-primary
+        .container
+            .row
+                .col-lg-8.col-lg-offset-2.text-center
+                    h1.landing-heading.section-heading Welcome, #{user.firstname}
+                    hr
+
     #leftframe(style="float:left; width: 80%; background-color:#EEEEEE;")
         p
             | #{fillers.flr1} #{query.food} #{fillers.flr2} #{query.place}
@@ -327,7 +335,7 @@ block content
               .row
                 .col-lg-8.col-lg-offset-2
                   .modal-body
-    #rightframe(style="float:right;")
+    #rightframe(style="float:right; width: 20%")
         //iframe#frame2(scr='', width='100%', height='1000')
         each f,i in relevantusers
             img.img-circle.img-responsive(src='#{f.profilepic}')

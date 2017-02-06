@@ -22,9 +22,20 @@ block content
     br
     br
     br
-    #header.content-section.text-center
-        .row
-            .col-md-8.col-md-offset-2
-                h1 Welcome to Foodworked
-                form(method="get",action="/auth/facebook")
-                    button.btn.btn-default Login via Facebook
+    #action.bg-primary
+        .container
+            .row
+                .col-lg-8.col-lg-offset-2.text-center
+                    h1.landing-heading.section-heading Welcome to Foodworked: Food + Networking
+                    hr
+                    p.landing-header.text-center
+                        | Making daily meals
+                        strong  productive.
+
+                    form(method="get",action="/auth/facebook")
+                        button.btn.btn-default Login via Facebook
+    #rightframe(style="float:right; width: 50%; background-color:#DDDDDD; padding: 2px;")
+        #action
+                    .col-lg-8.col-lg-offset-2.text-center
+                        p
+                            | Get matched with like minded people
