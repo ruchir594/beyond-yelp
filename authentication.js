@@ -17,7 +17,7 @@ module.exports = passport.use(new FacebookStrategy({
   function(accessToken, refreshToken, profile, done) {
     User.findOne({ oauthID: profile.id }, function(err, user) {
         //console.log(util.inspect(profile, false, null))
-        //console.log(profile);
+        console.log(profile);
       if(err) {
         console.log(err);  // handle errors!
       }
@@ -27,6 +27,8 @@ module.exports = passport.use(new FacebookStrategy({
         user = new User({
           oauthID: profile.id,
           name: profile.displayName,
+          firstname: profile.name.givenName,
+          lastname: profile.name.familyName,
           email: profile.emails[0].value,
           profilepic: profile.photos[0].value,
           profilelink: profile.profileUrl,
