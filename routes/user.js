@@ -15,7 +15,9 @@ var User = mongoose.model('User', {
   gender: String,
   location:String,
   coord: Array,
-  created: Date
+  created: Date,
+  education: String,
+  major: String
 });
 
 

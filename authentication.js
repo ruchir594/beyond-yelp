@@ -33,9 +33,12 @@ module.exports = passport.use(new FacebookStrategy({
           profilepic: profile.photos[0].value,
           profilelink: profile.profileUrl,
           gender: profile.gender,
+          coord: [0,0],
           location: "Locality, City, Country.",
           age: "Age",
           type: "Facebook",
+          education: "Select Highest Education from below",
+          major: "Select Major(s) from below",
           created: Date.now()
         });
         user.save(function(err) {

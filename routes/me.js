@@ -1,11 +1,16 @@
 var express = require('express');
 var router = express.Router();
+var geocoder = require('geocoder');
 const util = require('util');
 var form = require('express-form')
 
 /*GET request*/
 router.get('/', function(req, res, next){
-    res.render('me', { user: req.user });
+    var db = req.db;
+    var collection = db.get('users');
+    collection.find({oauthID: req.user.oauthID}, {}, function(e, docs){
+        res.render('me', {user:docs[0], fuser:'', message:''});
+    });
 });
 
 /* receiving the form and updating the information */
@@ -16,10 +21,20 @@ router.post('/', function(req, res){
     //console.log(req.body);
     var obj_update = {};
     if (req.body.age) obj_update.age = req.body.age;
-    if (req.body.location) obj_update.location = req.body.location;
+    if (req.body.location) {
+        obj_update.location = req.body.location;
+        geocoder.geocode(req.body.location, function ( err, data ) {
+          obj_update.coord = [data.results[0].geometry.location.lat, data.results[0].geometry.location.lng];
+          collection.update({oauthID: req.user.oauthID},
+          {
+              $set: obj_update
+          });
+        });
+    }
     if (req.body.hedu) obj_update.education = req.body.hedu;
     if (req.body.fostudy) obj_update.major = req.body.fostudy;
     obj_update.lastUpdated = Date.now();
+    console.log(obj_update);
     collection.update({oauthID: req.user.oauthID},
     {
         $set: obj_update,
