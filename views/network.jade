@@ -47,3 +47,12 @@ block content
                         option Dinner
                         option Late Night
                     button.pure-button.button-xlarge.pure-button-primary(type="submit").fa.fa-search  Go figure
+    .bg-light-gray
+        .container
+            .row
+            each f,i in fuser
+                .col-sm-4
+                    .team-member
+                        img.img-circle.img-responsive(src='#{f.profilepic}')
+                        a(href='#{f.profilelink}') #{f.name}
+                        p #{f.education}, #{f.major}
