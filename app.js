@@ -26,6 +26,7 @@ var fbAuth = require('./authentication.js');
 var fbl = require('./routes/fbl');
 var find = require('./routes/find');
 var me = require('./routes/me');
+var network = require('./routes/network');
 
 // serialize and deserialize
 passport.serializeUser(function(user, done) {
@@ -90,6 +91,7 @@ app.use(function(req,res,next){
 app.use('/', index);
 app.use('/find', find);
 app.use('/me', me);
+app.use('/network', network);
 //app.use('/ping', ping);
 app.get('/home', ensureAuthenticated, function(req, res){
   User.findById(req.session.passport.user, function(err, user) {
