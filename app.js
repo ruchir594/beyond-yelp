@@ -104,14 +104,17 @@ app.get('/home', ensureAuthenticated, function(req, res){
           // raw mongo cursor
           cursor.toArray()
             .then(function(relevantusers){
-                //console.log(relevantusers);
+                if(user.location=="Locality, City, Country."){
+                    res.render('me', {user:user, fuser:'', message:'Please update your Profile to get started'});
+                }
+                else {
                 res.render('home', {
                     user: user,
                     relevantusers: relevantusers,
                     query: {"food":"", "place":""},
                     result: "",
                     fillers: {"flr1": "", "flr2": ""}
-                });
+                }); }
             });
         });
     }
