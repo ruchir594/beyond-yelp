@@ -105,7 +105,7 @@ app.get('/home', ensureAuthenticated, function(req, res){
           cursor.toArray()
             .then(function(relevantusers){
                 if(user.location=="Locality, City, Country."){
-                    res.render('me', {user:user, fuser:'', message:'Please update your Profile to get started'});
+                    res.render('me', {user:user, fuser:'', message:'Please update your Profile to get started!'});
                 }
                 else {
                 res.render('home', {

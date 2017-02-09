@@ -24,13 +24,13 @@ block content
                     li
                         a.page-scroll(href='/logout') Logout
 
-    #page
+    #page.bg-primary
         .container
             .title
-                h2
+                h2.landing-heading
                     img.img-responsive.img-circle(src='#{user.profilepic}')
                     | Welcome,
-                    a(href='#{user.profilelink}') #{user.name}.
+                    a(href='#{user.profilelink}')  #{user.firstname}.
     .update-notification
         h5=message
     .container
@@ -39,17 +39,24 @@ block content
                 fieldset.pure-group
                     legend Personal Details
                     input.pure-input-1-3(type="text", name="username", placeholder="#{user.name}", readonly="readonly")
-                    input.pure-input-1-3(type="email", name="email", placeholder="#{user.email}", readonly="readonly")
                     input.pure-input-1-4(type="text", name="gender", placeholder="#{user.gender}", readonly="readonly")
                     input.pure-input-1-4(type="number", name="age", placeholder="#{user.age}")
                     input.pure-input-1-3(type="text", name="location", placeholder="#{user.location}")
                     input.pure-input-1-3(type="text", name="coord", placeholder="#{user.coord}", readonly="readonly")
+                fieldset
                     input.pure-input-1-3(type="text", name="education", placeholder="#{user.education}", readonly="readonly")
+                    .pure-u-1.pure-u-md-1-3
+                      //label(for='time') Highest Education
+                      select#state.pure-input-1-3(name="hedu")
+                        option
+                        option High School
+                        option Bachelor's Degree
+                        option Master's Degree
+                        option PhD
+                fieldset
                     input.pure-input-1-3(type="text", name="major", placeholder="#{user.major}", readonly="readonly")
-                fieldset
-                    legend What is going on in your head? Don't worry, We will never, ever share it with anyone! Pinky promise :)
-                    input.pure-input-1-2(type="text", name="waytrn1", placeholder="What is going on in your head?")
-                fieldset
+                //-
+                    fieldset
                     //legend Professional Details
                     legend Highest Education
                     label.pure-radio(for="highest-education")
@@ -65,7 +72,7 @@ block content
                         input#highest-education(type="radio", name="hedu", value="Doctorate")
                         |   PhD
                 fieldset
-                    legend Field of Study and Occupation
+                    //legend Field of Study and Occupation
                     label.pure-checkbox(for="field-of-study")
                         input#field-of-study(type="checkbox", name="fostudy", value="Aerospace")
                         | Aerospace
@@ -103,5 +110,7 @@ block content
                         input#field-of-study(type="checkbox", name="fostudy", value="Other")
                         | Other
                         br
-
+                fieldset
+                    legend What is going on in your head? Don't worry, We will never, ever share it with anyone! Pinky promise :)
+                    input.pure-input-1-2(type="text", name="waytrn1", placeholder="What is going on in your head?")
                 button.pure-button.pure-button-primary(type="submit") Update

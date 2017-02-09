@@ -247,6 +247,12 @@ th {
   h3 {
     page-break-after: avoid;
   }
+  h1,
+  h2,
+  h3,
+  h5 {
+      text-transform: none !important;
+  }
   .navbar {
     display: none;
   }

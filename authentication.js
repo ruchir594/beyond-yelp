@@ -37,7 +37,7 @@ module.exports = passport.use(new FacebookStrategy({
           location: "Locality, City, Country.",
           age: "Age",
           type: "Facebook",
-          education: "Select Highest Education from below",
+          education: "Select Highest Education...",
           major: "Select Major(s) from below",
           created: Date.now()
         });

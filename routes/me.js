@@ -18,7 +18,7 @@ router.post('/', function(req, res){
     var db = req.db;
     var collection = db.get('users');
     //console.log(req.user);
-    //console.log(req.body);
+    console.log(req.body.time);
     var obj_update = {};
     if (req.body.age) obj_update.age = req.body.age;
     if (req.body.location) {
