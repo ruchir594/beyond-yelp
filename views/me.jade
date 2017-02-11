@@ -14,7 +14,7 @@ block content
             #bs-example-navbar-collapse-1.collapse.navbar-collapse
                 ul.nav.navbar-nav.navbar-right
                     li
-                        a.page-scroll(href='/home') Home
+                        a.page-scroll(href='/home') Food
                     li
                         a.page-scroll(href='#') My Profile
                     li
@@ -31,6 +31,16 @@ block content
                     img.img-responsive.img-circle(src='#{user.profilepic}')
                     | Welcome,
                     a(href='#{user.profilelink}')  #{user.firstname}.
+            h4.landing-heading
+                | 1. Your Profile
+                br
+                |  2. Food you search
+                br
+                |  3. Tweets
+                br
+                |  are used to find best
+                a(href='/network')  network
+                |  opportunities with people in your area.
     .update-notification
         h5=message
     .container

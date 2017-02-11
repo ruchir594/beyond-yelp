@@ -47,7 +47,7 @@ router.post('/', function(req, res){
         else {
             console.log(result);
             collection.find({oauthID: req.user.oauthID}, {}, function(e, docs){
-                res.render('me', {user:docs[0], fuser:'', message:'Succesfully updated your Profile! :)'});
+                res.render('me', {user:docs[0], fuser:'', message:'Succesfully updated your Profile! :) '});
             });
         }
     });
