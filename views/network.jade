@@ -14,7 +14,7 @@ block content
             #bs-example-navbar-collapse-1.collapse.navbar-collapse
                 ul.nav.navbar-nav.navbar-right
                     li
-                        a.page-scroll(href='/home') Home
+                        a.page-scroll(href='/home') Food
                     li
                         a.page-scroll(href='/me') My Profile
                     li
@@ -29,17 +29,19 @@ block content
                 .col-lg-8.col-lg-offset-2.text-center
                     br
                     br
-                    h1.landing-heading.section-heading Welcome, #{user.firstname}
+                    h2.landing-heading.section-heading Welcome, #{user.firstname}
                     hr
+
 
     .container
         .row
+            h4.landing-heading Find people to hang out with
             form.pure-form(name="doNetwork", method="post", action="/network")
                 fieldset.pure-group
                     label(for="place") At
                     input.pure-input-1-3(type="text", name="place", placeholder="Hanover, NH; London; Manhatten ...")
                     .pure-u-1.pure-u-md-1-3
-                      label(for='time') Time
+                      label(for='time') For
                       br
                       select#state.pure-input-1-2(name="time")
                         option Breakfast
@@ -47,7 +49,7 @@ block content
                         option Lunch
                         option Dinner
                         option Late Night
-                    button.pure-button.button-xlarge.pure-button-primary(type="submit").fa.fa-search  Go figure
+                    button.pure-button.button-xlarge.pure-button-primary(type="submit").fa.fa-search
     .bg-light-gray
         .container
             .row
