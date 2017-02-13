@@ -23,14 +23,33 @@ block content
                         a.page-scroll(href='#services') Tech
                     li
                         a.page-scroll(href='/logout') Logout
-    #action.bg-primary
+    #page.bg-primary
         .container
-            .row
-                .col-lg-8.col-lg-offset-2.text-center
+            .title
+                h2
                     br
                     br
-                    h2.landing-heading.section-heading Welcome, #{user.firstname}
-                    hr
+                    br
+                    #rightframe(style="float:left; width: 30%")
+                        img.img-responsive.img-circle(src='#{user.profilepic}')
+                        br
+                    #rightframe(style="float:right; width: 70%")
+                        | Welcome,
+                        a(href='#{user.profilelink}')  #{user.firstname}.
+                br
+                h4.landing-heading
+                    br
+                    | 1. Your Profile
+                    br
+                    | 2. Food you search
+                    br
+                    | 3. Tweets
+                    br
+                    | are used to learn about you.
+                    br
+                    br
+                    |  We then use our algorithm to find the like minded people in your area for networking opportunities over a meal.
+
 
 
     .container
