@@ -10,11 +10,11 @@ block content
                     span.icon-bar
                     span.icon-bar
                     span.icon-bar
-                a.navbar-brand.page-scroll(itemprop='name', href='/') Welcome, #{user.firstname}.
+                a.navbar-brand.page-scroll(itemprop='name', href='/') Foodworked.com
             #bs-example-navbar-collapse-1.collapse.navbar-collapse
                 ul.nav.navbar-nav.navbar-right
                     li
-                        a.page-scroll(href='/home') Home
+                        a.page-scroll(href='/home') Food
                     li
                         a.page-scroll(href='/me') My Profile
                     li
@@ -340,7 +340,20 @@ block content
         //each f,i in relevantusers
         //    img.img-circle.img-responsive(src='#{f.profilepic}')
         //    p #{f.name}, #{f.education}, #{f.major}
-        //p 
+        //p
+        h3.landing-heading Hey #{user.firstname}, Let people find you
+        form.pure-form(name="addRooster", method="post", action="/rooster")
+            fieldset.pure-group
+                .pure-u-1.pure-u-md-1-3
+                  label(for='time') For
+                  br
+                  select#state.pure-input-1-2(name="time")
+                    option Breakfast
+                    option Brunch
+                    option Lunch
+                    option Dinner
+                    option Late Night
+                button.pure-button.button-xlarge.pure-button-primary(type="submit") Add me into Rooster
 
       //div
       //- console.log(relevantusers)
