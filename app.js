@@ -115,7 +115,7 @@ app.get('/home', ensureAuthenticated, function(req, res){
                     relevantusers: relevantusers,
                     query: {"food":"", "place":""},
                     result: "",
-                    fillers: {"flr1": "", "flr2": ""}
+                    fillers: {"flr1": "", "flr2": "", "flr3": ""}
                 }); }
             });
         });
