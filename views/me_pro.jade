@@ -1,0 +1,163 @@
+extends layout
+
+block content
+    title Your Profile
+    nav#mainNav.navbar.navbar-default.navbar-fixed-top
+        .container-fluid
+            .navbar-header
+                button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+                    span.sr-only Toggle navigation
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                a.navbar-brand.page-scroll(itemprop='name', href='/') Food Networking
+            #bs-example-navbar-collapse-1.collapse.navbar-collapse
+                ul.nav.navbar-nav.navbar-right
+                    li
+                        a.page-scroll(href='/home') Food
+                    li
+                        a.page-scroll(href='#') My Profile
+                    li
+                        a.page-scroll(href='/network') My Network
+                    li
+                        a.page-scroll(href='#services') Tech
+                    li
+                        a.page-scroll(href='/logout') Logout
+
+
+    #action.bg-primary
+        .container
+            .row
+                .col-lg-8.col-lg-offset-2.text-center
+                    h2.landing-heading.section-heading Welcome, #{user.firstname}
+                    hr
+                #leftframe(style="float:left; width: 33%; background-color:#EEEEEE;")
+                    p in left frame
+                #centerframe(style="float:left; width: 33%; background-color:#EEEEEE;")
+                    p in center frame
+                #rightframe(style="float:left; width: 33%; background-color:#EEEEEE;")
+                    p in right frame
+    #baseframe(style="float:left, width: 100%; background-color:#DDDDDD;")
+        #page.bg-primary
+            .container
+                .title
+                    h2
+                        br
+                        br
+                        br
+                        #rightframe(style="float:left; width: 30%")
+                            img.img-responsive.img-circle(src='#{user.profilepic}')
+                            br
+                        #rightframe(style="float:right; width: 70%")
+                            | Welcome,
+                            a(href='#{user.profilelink}')  #{user.firstname}.
+                    br
+                    h4.landing-heading
+                        br
+                        | 1. Your Profile
+                        br
+                        | 2. Food you search
+                        br
+                        | 3. Tweets
+                        br
+                        | are used to learn about you.
+                        br
+                        br
+                        |  We then use our algorithm to find the like minded people in your area for networking opportunities over a meal.
+        .update-notification
+            h5=message
+        .container
+            .row
+                form.pure-form(name="updateForm", method="post", action="/me/pro")
+                    fieldset.pure-group
+                        legend Personal Details
+                        input.pure-input-1-3(type="text", name="username", placeholder="#{user.name}", readonly="readonly")
+                        input.pure-input-1-4(type="text", name="gender", placeholder="#{user.gender}", readonly="readonly")
+                        input.pure-input-1-4(type="number", name="age", placeholder="#{user.age}")
+                        input.pure-input-1-3(type="text", name="location", placeholder="#{user.location}")
+                        input.pure-input-1-3(type="text", name="coord", placeholder="#{user.coord}", readonly="readonly")
+                    fieldset
+                        input.pure-input-1-3(type="text", name="education", placeholder="#{user.education}", readonly="readonly")
+                        .pure-u-1.pure-u-md-1-3
+                          //label(for='time') Highest Education
+                          select#state.pure-input-1-3(name="hedu")
+                            option
+                            option High School
+                            option Bachelor's Degree
+                            option Master's Degree
+                            option PhD
+                    fieldset
+                        input.pure-input-1-3(type="text", name="major", placeholder="#{user.major}", readonly="readonly")
+                    //-
+                        fieldset
+                        //legend Professional Details
+                        legend Highest Education
+                        label.pure-radio(for="highest-education")
+                            input#highest-education(type="radio", name="hedu", value="highschool")
+                            |   High School
+                            br
+                            input#highest-education(type="radio", name="hedu", value="bachelor")
+                            |   Bachelor's Degree
+                            br
+                            input#highest-education(type="radio", name="hedu", value="Masters")
+                            |   Master's Degree
+                            br
+                            input#highest-education(type="radio", name="hedu", value="Doctorate")
+                            |   PhD
+                    fieldset
+                        //legend Field of Study and Occupation
+                        label.pure-checkbox(for="field-of-study")
+                            input#field-of-study(type="checkbox", name="fostudy", value="Aerospace")
+                            | Aerospace
+                            br
+                            input#field-of-study(type="checkbox", name="fostudy", value="Architecture")
+                            | Architecture
+                            br
+                            input#field-of-study(type="checkbox", name="fostudy", value="Computer Science")
+                            | Computer Science
+                            br
+                            input#field-of-study(type="checkbox", name="fostudy", value="Economics")
+                            | Economics
+                            br
+                            input#field-of-study(type="checkbox", name="fostudy", value="Engineering")
+                            | Engineering
+                            br
+                            input#field-of-study(type="checkbox", name="fostudy", value="Law")
+                            | Law
+                            br
+                            input#field-of-study(type="checkbox", name="fostudy", value="Liberal Studies")
+                            | Liberal Studies
+                            br
+                            input#field-of-study(type="checkbox", name="fostudy", value="Doctor")
+                            | Medicine
+                            br
+                            input#field-of-study(type="checkbox", name="fostudy", value="Nursing")
+                            | Nursing
+                            br
+                            input#field-of-study(type="checkbox", name="fostudy", value="Public Services")
+                            | Public Services (Police officer, Military)
+                            br
+                            input#field-of-study(type="checkbox", name="fostudy", value="Sciences")
+                            | Sciences (Physics, Chemistry)
+                            br
+                            input#field-of-study(type="checkbox", name="fostudy", value="Other")
+                            | Other
+                            br
+                    fieldset
+                        legend What is going on in your head? Don't worry, We will never, ever share it with anyone! Pinky promise :)
+                        input.pure-input-1-2(type="text", name="waytrn1", placeholder="What is going on in your head?")
+                    button.pure-button.pure-button-primary(type="submit") Update
+
+    script(src='http://code.jquery.com/jquery.js')
+    script.
+        $(function () {
+            $("#centerframe").on("click", function () {
+                $("#baseframe").load("/network");
+            });
+            $("#leftframe").on("click", function () {
+                $("#baseframe").load("/food");
+            });
+            $("#rightframe").on("click", function () {
+                $("#baseframe").load("/me");
+            });
+        });
