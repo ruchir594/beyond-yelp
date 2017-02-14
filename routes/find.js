@@ -19,7 +19,7 @@ const clientSecret = config.yelpfusion.AppSecret;
 
 /* GET */
 router.get('/', function(req, res) {
-    res.redirect('/home');
+    res.redirect('/food');
 });
 
 /* POST to Find Restaurant*/
@@ -68,7 +68,7 @@ router.post('/', function(req, res) {
           cursor.toArray()
             .then(function(relevantusers){
                 //console.log(relevantusers);
-                res.render('home', {
+                res.render('food', {
                     user: req.user,
                     relevantusers: relevantusers,
                     query: req.body,

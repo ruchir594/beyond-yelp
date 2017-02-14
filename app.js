@@ -96,6 +96,11 @@ app.use('/network', network);
 app.use('/rooster', rooster);
 //app.use('/ping', ping);
 app.get('/home', ensureAuthenticated, function(req, res){
+    res.render('home', {
+        user:req.user
+    });
+});
+app.get('/food', ensureAuthenticated, function(req, res){
   User.findById(req.session.passport.user, function(err, user) {
     if(err) {
       console.log(err);  // handle errors
@@ -110,7 +115,7 @@ app.get('/home', ensureAuthenticated, function(req, res){
                     res.render('me', {user:user, fuser:'', message:'Please update your Profile to get started!'});
                 }
                 else {
-                res.render('home', {
+                res.render('food', {
                     user: user,
                     relevantusers: relevantusers,
                     query: {"food":"", "place":""},
