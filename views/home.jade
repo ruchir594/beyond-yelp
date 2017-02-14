@@ -31,8 +31,16 @@ block content
         .container
             .row
                 .col-lg-8.col-lg-offset-2.text-center
-                    h1.landing-heading.section-heading Welcome, #{user.firstname}
+                    h2.landing-heading.section-heading Welcome, #{user.firstname}
                     hr
+                #leftframe(style="float:left; width: 33%; background-color:#EEEEEE;")
+                    p in left frame
+                #centerframe(style="float:left; width: 33%; background-color:#EEEEEE;")
+                    p in center frame
+                #rightframe(style="float:left; width: 33%; background-color:#EEEEEE;")
+                    p in right frame
+    #baseframe(style="float:left, width: 100%; background-color:#DDDDDD;")
+        p damn here
 
     #leftframe(style="float:left; width: 80%; background-color:#EEEEEE;")
         p
@@ -380,7 +388,14 @@ block content
         $("#portfolioModal2").html('<object data="http://jalopnik.com">');
         $("#pm3").html('<object data="http://jalopnik.com">');
         $("#frame").attr("src", "http://jalopnik.com/")
-        //$("#frame2").attr("src", "http://tonatasha.com/")
+        $(function () {
+            $("#centerframe").on("click", function () {
+                $("#baseframe").load("/network");
+            });
+            $("#nav_page_b").on("click", function () {
+                $("#main").load("PageB.html");
+            });
+        });
     each f,i in result
         script.
             $('#of#{i}').click(function () {
