@@ -27,17 +27,10 @@ block content
     br
     br
 
-    #action.bg-primary
-        .container
-            .row
-                .col-lg-8.col-lg-offset-2.text-center
-                    h2.landing-heading.section-heading Welcome, #{user.firstname}
-                    hr
-
     #leftframe(style="float:left; width: 100%; background-color:#EEEEEE;")
         p
             | #{fillers.flr1} #{query.food} #{fillers.flr2} #{query.place}
-        form.pure-form(name="findRestaurants", method="post", action="/find")
+        form.pure-form(name="findRestaurants", method="post", action="/find/pro")
             label(for="food") Get
             input.pure-input-1-3(type="text", name="food", placeholder="Thai Food; Burger; Ice Cream ... ")
             label(for="place") at

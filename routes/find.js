@@ -81,4 +81,64 @@ router.post('/', function(req, res) {
       console.log(e);
     });
 });
+
+/* POST to Find Restaurant*/
+router.post('/pro', function(req, res) {
+
+    // Set our internal DB variable
+    var db = req.db;
+
+    // Get our form values. These rely on the "name" attributes
+    var userName = req.user.name;
+    var userID = req.user.oauthID;
+    var food = req.body.food;
+    var place = req.body.place;
+
+    const searchRequest = {
+      term:req.body.food,
+      location: req.body.place,
+      limit: 25
+    };
+
+    // Set our collection
+    var collection = db.get('allfoodqueries');
+    var allusers = db.get('users');
+    // Submit to the DB
+    collection.insert({
+        "username" : userName,
+        "id" : userID,
+        "food": food,
+        "place": place
+    }, function (err, doc) {
+        if (err) {
+            console.log(util.inspect(err, false, null))
+            // If it failed, return error
+            //res.send("Hmmm, something seems to be not working...");
+        }
+        else {
+        }
+    });
+      yelp.accessToken(clientId, clientSecret).then(response => {
+      const client = yelp.client(response.jsonBody.access_token);
+
+      client.search(searchRequest).then(response => {
+        const allResult = response.jsonBody.businesses;
+        allusers.find({}, { rawCursor: true }).then((cursor) => {
+          // raw mongo cursor
+          cursor.toArray()
+            .then(function(relevantusers){
+                //console.log(relevantusers);
+                res.render('food_pro', {
+                    user: req.user,
+                    relevantusers: relevantusers,
+                    query: req.body,
+                    result: allResult,
+                    fillers: {"flr1": " Looking for ", "flr2": " at "}});
+                });
+            });
+        });
+    }).catch(e => {
+      console.log(e);
+    });
+});
 module.exports = router;
