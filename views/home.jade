@@ -25,20 +25,26 @@ block content
                         a.page-scroll(href='/logout') Logout
     br
     br
-    br
 
-    #action.bg-primary
+    #action.bg-primary.text-center
         .container
             .row
-                .col-lg-8.col-lg-offset-2.text-center
+                .col-lg-8.col-lg-offset-2
                     h2.landing-heading.section-heading Welcome, #{user.firstname}
                     hr
                 #leftframe(style="float:left; width: 33%; background-color:#EEEEEE;")
-                    p in left frame
+                        a
+                            p.fa.fa-coffee.fa-5x
+                            p.fa.fa-cutlery.fa-5x
+                            p.fa-5x Food
                 #centerframe(style="float:left; width: 33%; background-color:#EEEEEE;")
-                    p in center frame
+                        a
+                            p.fa.fa-group.fa-5x
+                            p.fa.fa-handshake-o.fa-5x
                 #rightframe(style="float:left; width: 33%; background-color:#EEEEEE;")
-                    p in right frame
+                    a
+                        p.fa.fa-street-view.fa-5x
+                        p.fa.fa-info.fa-5x
     #baseframe(style="float:left, width: 100%; background-color:#DDDDDD;")
         p damn here
 
