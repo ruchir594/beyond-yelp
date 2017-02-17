@@ -133,17 +133,3 @@ block content
                     legend What is going on in your head? Don't worry, We will never, ever share it with anyone! Pinky promise :)
                     input.pure-input-1-2(type="text", name="waytrn1", placeholder="What is going on in your head?")
                 button.pure-button.pure-button-primary(type="submit") Update
-
-    script(src='http://code.jquery.com/jquery.js')
-    script.
-        $(function () {
-            $("#centerframe").on("click", function () {
-                $("#baseframe").load("/network");
-            });
-            $("#leftframe").on("click", function () {
-                $("#baseframe").load("/food");
-            });
-            $("#rightframe").on("click", function () {
-                $("#baseframe").load("/me");
-            });
-        });
