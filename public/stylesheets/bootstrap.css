@@ -287,6 +287,9 @@ th {
     font-weight: normal;
     text-transform: none !important;
 }
+.centered {
+    vertical-align: middle;
+}
 .glyphicon {
   position: relative;
   top: 1px;
