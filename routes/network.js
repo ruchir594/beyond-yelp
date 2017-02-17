@@ -35,4 +35,31 @@ router.post('/', function(req, res) {
 
 });
 
+router.post('/pro', function(req, res) {
+        var db = req.db;
+        var allusers = db.get('users');
+        geocoder.geocode(req.body.place, function ( err, data ) {
+         var ucoord = {
+             latitude: data.results[0].geometry.location.lat,
+             longitude: data.results[0].geometry.location.lng };
+         allusers.find({}, { rawCursor: true }).then((cursor) => {
+           // raw mongo cursor
+           cursor.toArray()
+             .then(function(relevantusers){
+                 var sortusers = [];
+                 var textMessage = '';
+                 relevantusers.forEach(function(item){
+                     var distance = geolib.getDistance(ucoord, {latitude: item.coord[0], longitude: item.coord[1]});
+                     if(distance < 10000){
+                         sortusers.push(item);
+                     }
+                 });
+                 res.render('network_pro', {user: req.user, fuser: sortusers, message: textMessage});
+             });
+         });
+     });
+
+
+});
+
 module.exports = router;
