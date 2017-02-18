@@ -14,7 +14,7 @@ block content
             #bs-example-navbar-collapse-1.collapse.navbar-collapse
                 ul.nav.navbar-nav.navbar-right
                     li
-                        a.page-scroll(href='/food') Food
+                        a.page-scroll(href='/home') Food
                     li
                         a.page-scroll(href='/me') My Profile
                     li
@@ -34,17 +34,18 @@ block content
                     hr
                     h3.landing-heading
                         | Network with people, at your convenience, and theirs.
-                #leftframe(style="float:left; width: 33%; height:120px; background-color:#DB2929;")
-                    a(style="color: #FFFFCC;")
+                #leftframe(style="float:left; width: 33%; height:120px; background-color:#EB3728;")
+                    a(style="color: #FFFFEE;")
                         p.fa.fa-cutlery.fa-4x.centered Food
                 #centerframe(style="float:left; width: 33%; height:120px; background-color:#EEEEEE;")
                     a(style="color: #444444")
                         p.fa.fa-handshake-o.fa-4x Network
-                #rightframe(style="float:left; width: 33%; height:120px; background-color:#337ab7;")
+                #rightframe(style="float:left; width: 33%; height:120px; background-color:#EEDB82;")
                     a
                         p.fa.fa-street-view.fa-4x Profile
     #baseframe(style="float:left, width: 100%; background-color:#DDDDDD;")
-        #leftframeb(style="float:left; width: 100%; background-color:#EEEEEE;")
+        #leftframeb(style="float:left; width: 100%; background-color:#EB3728;")
+            br
             p
                 | #{fillers.flr1} #{query.food} #{fillers.flr2} #{query.place}
             form.pure-form(name="findRestaurants", method="post", action="/find/pro")
@@ -53,7 +54,9 @@ block content
                 label(for="place") at
                 input.pure-input-1-3(type="text", name="place", placeholder="Hanover, NH; London; Manhatten ...")
                 button.pure-button.pure-button-primary(type="submit").fa.fa-search
-            section#portfolio
+            br
+            br
+            section#portfolio(style="background-color:#DDDDDD;")
               .container
                 .row
                   .col-lg-12.text-center

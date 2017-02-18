@@ -35,6 +35,11 @@ router.post('/', function(req, res) {
 
 });
 
+/* GET to Find User Service */
+router.get('/pro', function(req, res) {
+        res.render('network_pro', {user:req.user, fuser:'', message:''});
+});
+
 router.post('/pro', function(req, res) {
         var db = req.db;
         var allusers = db.get('users');

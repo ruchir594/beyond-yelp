@@ -55,6 +55,15 @@ router.post('/', function(req, res){
     //res.render('update', {user:req.user, fuser:'', message:'Succesfully'});
 })
 
+/*GET request*/
+router.get('/pro', function(req, res, next){
+    var db = req.db;
+    var collection = db.get('users');
+    collection.find({oauthID: req.user.oauthID}, {}, function(e, docs){
+        res.render('me_pro', {user:docs[0], fuser:'', message:''});
+    });
+});
+
 /* receiving the form and updating the information */
 router.post('/pro', function(req, res){
     var db = req.db;
