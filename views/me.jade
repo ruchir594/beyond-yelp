@@ -1,29 +1,5 @@
 block content
     title Your Profile
-    nav#mainNav.navbar.navbar-default.navbar-fixed-top
-        .container-fluid
-            .navbar-header
-                button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
-                    span.sr-only Toggle navigation
-                    span.icon-bar
-                    span.icon-bar
-                    span.icon-bar
-                a.navbar-brand.page-scroll(itemprop='name', href='/') Food Networking
-            #bs-example-navbar-collapse-1.collapse.navbar-collapse
-                ul.nav.navbar-nav.navbar-right
-                    li
-                        a.page-scroll(href='/home') Food
-                    li
-                        a.page-scroll(href='#') My Profile
-                    li
-                        a.page-scroll(href='/network') My Network
-                    li
-                        a.page-scroll(href='#services') Tech
-                    li
-                        a.page-scroll(href='/logout') Logout
-
-
-
     #page(style="background-color: #EEDB82;")
         .container
             .title
@@ -50,9 +26,7 @@ block content
                     br
                     br
                     |  We then use our algorithm to find the like minded people in your area for networking opportunities over a meal.
-        .update-notification
-            h5=message
-        .container
+         .container
             .row
                 form.pure-form(name="updateForm", method="post", action="/me/pro")
                     fieldset.pure-group
